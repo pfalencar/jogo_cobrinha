@@ -26,22 +26,37 @@ function criarCobrinha(){
 document.addEventListener('keydown', update); 
 
 function update (event) {
-    if(event.keyCode == 37 && direction != "left") {
+    if(event.keyCode == 37 && direction != "right") {
         //37 é o codigo da tecla que vai pra direita
         direction = "left";
     }
-    if(event.keyCode == 38 && direction != "up") {
+    if(event.keyCode == 38 && direction != "down") {
         direction = "up";
     }
-    if(event.keyCode == 39 && direction != "right") {
+    if(event.keyCode == 39 && direction != "left") {
         direction = "right";
     }
-    if(event.keyCode == 40 && direction != "down") {
+    if(event.keyCode == 40 && direction != "up") {
         direction = "down";
     }
 }
 
 function iniciarJogo() {
+
+    if (snake[0].x > 15 * box && direction =="right") {
+        snake[0].x = 0;
+    }
+    if (snake[0].x < 0 * box && direction =="left") {
+        snake[0].x = 16 * box;
+    }
+    if (snake[0].y > 15 * box && direction =="down") {
+        snake[0].y = 0;
+    }
+    if (snake[0].y < 0 * box && direction =="up") {
+        snake[0].y = 16 * box;
+    }
+    
+
     criarBackground();
     criarCobrinha();
 
@@ -62,7 +77,7 @@ function iniciarJogo() {
     }
 
     //método que sempre acrescenta um elemento no começo 
-    //do vetor.
+    //do vetor. 
     snake.unshift(newHead);
 
 }
